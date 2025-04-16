@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souki - Web Designer & Developer Portfolio</title>
+    <meta name="description" content="Soukiのポートフォリオサイト。LP/HPデザイナー、UI/UXデザイナー、Web開発者として4年の経験を持つクリエイターです。">
+    <meta name="keywords" content="Web制作, LP制作, HPデザイン, UI/UXデザイン, アプリケーション開発, ポートフォリオ, Souki">
+    <meta name="author" content="Souki">
+    <meta property="og:title" content="Souki - Web Designer & Developer Portfolio">
+    <meta property="og:description" content="Web制作、LP/HP制作、UI/UXデザイン、アプリケーション開発のポートフォリオサイト">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://souki-portfolio.com">
+    <link rel="canonical" href="https://souki-portfolio.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #10B981;
+            --dark-color: #1F2937;
+            --light-color: #F9FAFB;
+            --accent-color: #F59E0B;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #4F46E5 0%, #10B981 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #4F46E5, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .portfolio-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .portfolio-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            opacity: 0;
+            background: rgba(79, 70, 229, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #E5E7EB;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #4F46E5 0%, #10B981 100%);
+            animation-name: skillProgress;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes skillProgress {
+            0% {
+                width: 0;
+            }
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: currentColor;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .circle-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(79, 70, 229, 0.1);
+            z-index: -1;
+        }
+        
+        .bg-circle-1 {
+            top: -100px;
+            right: -100px;
+        }
+        
+        .bg-circle-2 {
+            bottom: -100px;
+            left: -100px;
+        }
+        
+        .bouncing {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .rotating {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: var(--primary-color);
+        }
+        
+        .contact-input {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #E5E7EB;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #F9FAFB;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4F46E5;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3730A3;
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Souki",
+        "url": "https://souki-portfolio.com",
+        "jobTitle": "Web Designer & Developer",
+        "description": "Web制作、LP/HP制作、UI/UXデザイン、アプリケーション開発",
+        "knowsAbout": ["Web開発", "UI/UXデザイン", "LPデザイン", "アプリケーション開発"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-circle mb-4"></div>
+            <p class="text-lg font-medium">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Background Circles -->
+    <div class="circle-bg bg-circle-1"></div>
+    <div class="circle-bg bg-circle-2"></div>
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full bg-white bg-opacity-90 backdrop-filter backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-2xl font-bold text-gradient">Souki</a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link font-medium hover:text-primary-color transition-colors">ホーム</a>
+                    <a href="#about" class="nav-link font-medium hover:text-primary-color transition-colors">自己紹介</a>
+                    <a href="#services" class="nav-link font-medium hover:text-primary-color transition-colors">サービス</a>
+                    <a href="#portfolio" class="nav-link font-medium hover:text-primary-color transition-colors">作品</a>
+                    <a href="#skills" class="nav-link font-medium hover:text-primary-color transition-colors">スキル</a>
+                    <a href="#contact" class="nav-link font-medium hover:text-primary-color transition-colors">お問い合わせ</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden flex items-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobile-nav" class="mobile-nav fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6">
+        <div class="flex justify-between items-center mb-8">
+            <a href="#" class="text-2xl font-bold text-gradient">Souki</a>
+            <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+            <a href="#home" class="font-medium hover:text-primary-color transition-colors py-2 border-b border-gray-100">ホーム</a>
+            <a href="#about" class="font-medium hover:text-primary-color transition-colors py-2 border-b border-gray-100">自己紹介</a>
+            <a href="#services" class="font-medium hover:text-primary-color transition-colors py-2 border-b border-gray-100">サービス</a>
+            <a href="#portfolio" class="font-medium hover:text-primary-color transition-colors py-2 border-b border-gray-100">作品</a>
+            <a href="#skills" class="font-medium hover:text-primary-color transition-colors py-2 border-b border-gray-100">スキル</a>
+            <a href="#contact" class="font-medium hover:text-primary-color transition-colors py-2">お問い合わせ</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-white" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+                        <span id="typed-text">こんにちは、Soukiと申します。</span><span class="cursor"></span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-100">
+                        Web制作4年の経験を持つ<br>
+                        LP/HP制作、UI/UXデザイン<br>
+                        アプリケーション開発のスペシャリスト
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#portfolio" class="bg-white text-indigo-600 font-medium py-3 px-6 rounded-lg shadow hover:shadow-lg transition duration-300 text-center">作品を見る</a>
+                        <a href="#contact" class="bg-transparent border-2 border-white text-white font-medium py-3 px-6 rounded-lg hover:bg-white hover:text-indigo-600 transition duration-300 text-center">お問い合わせ</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative flex justify-center">
+                        <div class="w-64 h-64 bg-white rounded-full shadow-xl overflow-hidden floating">
+                            <svg class="w-full h-full text-indigo-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-secondary-color rotating"></div>
+                        <div class="absolute top-1/2 -right-8 w-16 h-16 rounded-full bg-accent-color bouncing"></div>
+                        <div class="absolute -bottom-4 left-1/4 w-10 h-10 rounded-full bg-red-500 floating"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-center">
+            <p class="mb-2 text-sm">スクロールして詳細を見る</p>
+            <svg class="w-6 h-6 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up">自己紹介</h2>
+                <div class="w-16 h-1 bg-primary-color mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="relative mx-auto w-64 h-64 rounded-full overflow-hidden border-4 border-primary-color shadow-lg">
+                        <svg class="w-full h-full text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-4 text-dark-color">Souki</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Web制作業界で4年間の経験を持つLP/HPデザイナー、UI/UXデザイナー、アプリケーション開発者です。クライアントのニーズを理解し、ユーザーにとって魅力的で使いやすいWebサイトやアプリケーションを制作することを得意としています。モダンな技術とトレンドを取り入れながら、クリエイティブで高品質な成果物を提供しています。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div>
+                            <p class="font-medium text-gray-700">名前:</p>
+                            <p class="text-gray-600">Souki</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">経験:</p>
+                            <p class="text-gray-600">4年</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">専門:</p>
+                            <p class="text-gray-600">LP/HP制作, UI/UXデザイン</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">言語:</p>
+                            <p class="text-gray-600">日本語, 英語</p>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="flex space-x-4">
+                        <a href="#contact" class="bg-primary-color text-white font-medium py-2 px-6 rounded-lg shadow hover:shadow-lg transition duration-300">お問い合わせ</a>
+                        <a href="#portfolio" class="bg-white border border-primary-color text-primary-color font-medium py-2 px-6 rounded-lg hover:bg-primary-color hover:text-white transition duration-300">作品を見る</a>
+                    </div> -->
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#portfolio" class="bg-white text-indigo-600 font-medium py-3 px-6 rounded-lg shadow hover:shadow-lg transition duration-300 text-center">作品を見る</a>
+                        <a href="#contact" class="bg-transparent border-2 border-white text-white font-medium py-3 px-6 rounded-lg hover:bg-white hover:text-indigo-600 transition duration-300 text-center">お問い合わせ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up">サービス</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">高品質なWeb制作サービスを提供しています。クライアントのニーズに合わせたカスタマイズされたソリューションを提案します。</p>
+                <div class="w-16 h-1 bg-primary-color mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">LP/HP制作</h3>
+                    <p class="text-gray-600">魅力的で高変換率のランディングページやホームページをデザイン・制作します。SEO対策を施し、ビジネスの成長を支援します。</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">レスポンシブデザイン</h3>
+                    <p class="text-gray-600">あらゆるデバイスで最適に表示されるレスポンシブWebサイトを制作します。モバイルファーストのアプローチでユーザー体験を向上させます。</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">UI/UXデザイン</h3>
+                    <p class="text-gray-600">ユーザー中心の設計アプローチで、使いやすく魅力的なインターフェースをデザインします。ユーザーの行動心理を考慮した設計を行います。</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">アプリケーション開発</h3>
+                    <p class="text-gray-600">Webアプリケーションやシステム開発を行います。最新の技術スタックを活用し、効率的で堅牢なアプリケーションを構築します。</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">SEO対策</h3>
+                    <p class="text-gray-600">検索エンジン最適化を施し、ウェブサイトの可視性と訪問者数を向上させます。オーガニックトラフィックを増加させるための戦略を提案します。</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-primary-color text-4xl mb-4 service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-dark-color">Webコンサルティング</h3>
+                    <p class="text-gray-600">Webサイトの改善やオンラインマーケティング戦略のコンサルティングを提供します。データ分析に基づく最適な提案を行います。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up">ポートフォリオ</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">これまでに手がけた作品の一部をご紹介します。それぞれの作品にはクライアントのニーズに合わせたデザインと機能性が備わっています。</p>
+                <div class="w-16 h-1 bg-primary-color mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Portfolio Filter -->
+            <div class="flex flex-wrap justify-center mb-12">
+                <button class="portfolio-filter active m-2 px-6 py-2 bg-primary-color text-white rounded-full hover:shadow-lg transition duration-300" data-filter="all">すべて</button>
+                <button class="portfolio-filter m-2 px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-primary-color hover:text-white hover:shadow-lg transition duration-300" data-filter="lp">ランディングページ</button>
+                <button class="portfolio-filter m-2 px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-primary-color hover:text-white hover:shadow-lg transition duration-300" data-filter="corporate">コーポレートサイト</button>
+                <button class="portfolio-filter m-2 px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-primary-color hover:text-white hover:shadow-lg transition duration-300" data-filter="app">アプリケーション</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="lp" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Perfume+LP" alt="香水ランディングページ" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">香水ランディングページ</h3>
+                            <p class="text-white text-center mb-4">インフルエンサーコラボの香水ブランドのLP</p>
+                            <a href="https://soukikikuchi.github.io/perfume_lading_page/" target="_blank" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">香水ランディングページ</h3>
+                        <p class="text-gray-600 mb-2">インフルエンサーコラボの香水ブランドのLP</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">JavaScript</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">レスポンシブ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="lp" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Cosmetic+Site" alt="化粧品サイト" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">コスメティックサイト</h3>
+                            <p class="text-white text-center mb-4">プレミアムスキンケアブランドのウェブサイト</p>
+                            <a href="https://soukikikuchi.github.io/cosmetic/" target="_blank" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">コスメティックサイト</h3>
+                        <p class="text-gray-600 mb-2">プレミアムスキンケアブランドのウェブサイト</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">JavaScript</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">アニメーション</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="corporate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Corporate+Site" alt="50周年記念サイト" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">50周年記念サイト</h3>
+                            <p class="text-white text-center mb-4">企業の50周年を記念したコーポレートサイト</p>
+                            <a href="https://soukikikuchi.github.io/50thsite/" target="_blank" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">50周年記念サイト</h3>
+                        <p class="text-gray-600 mb-2">企業の50周年を記念したコーポレートサイト</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">JavaScript</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">タイムライン</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="lp" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Dental+Site" alt="歯科医院サイト" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">歯科矯正クリニック</h3>
+                            <p class="text-white text-center mb-4">マウスピース矯正専門の歯科クリニックサイト</p>
+                            <a href="https://soukikikuchi.github.io/mouthpiece/" target="_blank" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">歯科矯正クリニック</h3>
+                        <p class="text-gray-600 mb-2">マウスピース矯正専門の歯科クリニックサイト</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">レスポンシブ</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">医療サイト</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="lp" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Fashion+Consulting" alt="メンズファッションコンサルティング" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">ファッションコンサルティング</h3>
+                            <p class="text-white text-center mb-4">メンズアパレルコンサルタントのLP</p>
+                            <a href="https://soukikikuchi.github.io/mens-appere-consul/" target="_blank" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">ファッションコンサルティング</h3>
+                        <p class="text-gray-600 mb-2">メンズアパレルコンサルタントのLP</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">JavaScript</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">ファッション</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="corporate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400?text=Garden+Site" alt="造園業者サイト" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
+                            <h3 class="text-white text-xl font-bold mb-2">造園業者サイト</h3>
+                            <p class="text-white text-center mb-4">伝統と革新を融合した造園会社のウェブサイト</p>
+                            <a href="#" class="bg-white text-primary-color px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">サイトを見る</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-dark-color">造園業者サイト</h3>
+                        <p class="text-gray-600 mb-2">伝統と革新を融合した造園会社のウェブサイト</p>
+                        <div class="flex flex-wrap">
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">HTML/CSS</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">WordPress</span>
+                            <span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full mr-2 mb-2">コーポレートサイト</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View More Button -->
+            <div class="text-center mt-12">
+                <a href="#" class="bg-primary-color text-white font-medium py-3 px-8 rounded-lg shadow hover:shadow-lg transition duration-300 inline-block">もっと見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up">スキル</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Web制作やアプリケーション開発で培ってきた技術スキルをご紹介します。</p>
+                <div class="w-16 h-1 bg-primary-color mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-8 text-center md:text-left">開発スキル</h3>
+                    
+                    <!-- Skill 1 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">HTML/CSS</span>
+                            <span class="font-medium text-gray-700">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="95%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 2 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">JavaScript</span>
+                            <span class="font-medium text-gray-700">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="90%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 3 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Responsive Design</span>
+                            <span class="font-medium text-gray-700">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="95%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 4 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">WordPress</span>
+                            <span class="font-medium text-gray-700">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="85%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 5 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">PHP</span>
+                            <span class="font-medium text-gray-700">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-8 text-center md:text-left">デザインスキル</h3>
+                    
+                    <!-- Skill 6 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">UI/UXデザイン</span>
+                            <span class="font-medium text-gray-700">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="90%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 7 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Adobe XD</span>
+                            <span class="font-medium text-gray-700">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="90%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 8 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Figma</span>
+                            <span class="font-medium text-gray-700">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="85%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 9 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Photoshop</span>
+                            <span class="font-medium text-gray-700">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="80%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 10 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700">Illustrator</span>
+                            <span class="font-medium text-gray-700">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0; animation-duration: 1.5s;" data-width="75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Skills -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-8 text-center">その他のスキル</h3>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fab fa-react mr-2 text-blue-500"></i>React
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fab fa-vuejs mr-2 text-green-500"></i>Vue.js
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fab fa-sass mr-2 text-pink-500"></i>Sass
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fab fa-bootstrap mr-2 text-purple-500"></i>Bootstrap
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fab fa-git-alt mr-2 text-orange-500"></i>Git
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fas fa-mobile-alt mr-2 text-gray-700"></i>レスポンシブデザイン
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fas fa-search mr-2 text-blue-700"></i>SEO
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-full shadow-md text-gray-700 font-medium">
+                        <i class="fas fa-bezier-curve mr-2 text-red-500"></i>ウェブアニメーション
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up">お問い合わせ</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">プロジェクトのご相談やお問い合わせはこちらからお気軽にどうぞ。最短で返信いたします。</p>
+                <div class="w-16 h-1 bg-primary-color mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4 text-dark-color">お問い合わせ情報</h3>
+                        <p class="text-gray-600 mb-8">プロジェクトのご依頼やご質問など、お気軽にお問い合わせください。</p>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-primary-color mr-4 mt-1">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark-color mb-1">メールアドレス</h4>
+                                <p class="text-gray-600">slivefunding@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-primary-color mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark-color mb-1">電話番号</h4>
+                                <p class="text-gray-600">03-1234-5678</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary-color mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark-color mb-1">所在地</h4>
+                                <p class="text-gray-600">神奈川県</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-dark-color">SNS</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-100 text-primary-color flex items-center justify-center hover:bg-primary-color hover:text-white transition duration-300">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-100 text-primary-color flex items-center justify-center hover:bg-primary-color hover:text-white transition duration-300">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-100 text-primary-color flex items-center justify-center hover:bg-primary-color hover:text-white transition duration-300">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gray-100 text-primary-color flex items-center justify-center hover:bg-primary-color hover:text-white transition duration-300">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left" data-aos-duration="1000">
+                    <form id="contact-form" class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">お名前</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none contact-input" placeholder="山田 太郎" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">メールアドレス</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none contact-input" placeholder="example@mail.com" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">件名</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none contact-input" placeholder="お問い合わせの件名" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">メッセージ</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none contact-input" placeholder="お問い合わせ内容を入力してください" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary-color font-medium py-3 px-6 rounded-lg shadow hover:shadow-lg transition duration-300">送信する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-color text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="text-2xl font-bold mb-4 block">Souki</a>
+                    <p class="text-gray-400 max-w-xs">Web制作、LP/HP制作、アプリケーション開発、UI/UXデザインのフリーランスデザイナー・開発者です。</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">リンク</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">ホーム</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">自己紹介</a></li>
+                            <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">サービス</a></li>
+                            <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">作品</a></li>
+                            <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">スキル</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">お問い合わせ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">サービス</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">LP/HP制作</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">UI/UXデザイン</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">アプリケーション開発</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">レスポンシブデザイン</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">SEO対策</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">お問い合わせ</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope text-gray-400 mr-2 mt-1"></i>
+                                <span class="text-gray-400">contact@souki-portfolio.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone-alt text-gray-400 mr-2 mt-1"></i>
+                                <span class="text-gray-400">03-1234-5678</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-gray-400 mr-2 mt-1"></i>
+                                <span class="text-gray-400">東京都渋谷区</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="border-gray-700 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 Souki. All rights reserved.</p>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary-color text-white rounded-full flex items-center justify-center shadow-lg hover:bg-indigo-700 transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            once: true,
+            duration: 800,
+            offset: 100
+        });
+
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const backToTopButton = document.getElementById('back-to-top');
+        const skillProgressBars = document.querySelectorAll('.skill-progress');
+        const portfolioFilters = document.querySelectorAll('.portfolio-filter');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const contactForm = document.getElementById('contact-form');
+        const loader = document.querySelector('.loader');
+        
+        // Hide loader when page is loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 500);
+        });
+        
+        // Mobile Menu Toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+        });
+        
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+        // Back to Top Button Visibility
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+            
+            // Animate skill bars when in viewport
+            animateSkillBars();
+        });
+        
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Portfolio Filter
+        portfolioFilters.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                portfolioFilters.forEach(btn => {
+                    btn.classList.remove('active', 'bg-primary-color', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                // Add active class to current button
+                button.classList.add('active', 'bg-primary-color', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Show/hide portfolio items based on filter
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Contact Form Submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate form submission
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
+            
+            setTimeout(() => {
+                alert('お問い合わせありがとうございます。最短で返信いたします。');
+                contactForm.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }, 1500);
+        });
+        
+        // Animate skill bars when in viewport
+        function animateSkillBars() {
+            skillProgressBars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (barTop < windowHeight - 100) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                }
+            });
+        }
+        
+        // Typing Animation
+        function typeWriter(element, text, i = 0, speed = 100) {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(() => typeWriter(element, text, i, speed), speed);
+            }
+        }
+        
+        const typedTextElement = document.getElementById('typed-text');
+        const textToType = "こんにちは、Soukiです。";
+        
+        // Clear the element before typing
+        typedTextElement.textContent = '';
+        
+        // Start typing animation after a delay
+        setTimeout(() => {
+            typeWriter(typedTextElement, textToType);
+        }, 1000);
+    </script>
+</body>
+</html>
