@@ -289,6 +289,22 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3730A3;
         }
+
+        .frame {
+            height: 0;
+            overflow: hidden;
+        }
+        .pc .frame {
+            padding-top: 62.5%;
+        }
+        iframe {
+            transform-origin: 0 0;
+        }
+        .pc iframe {
+            margin-top: -62.5%;
+            transform: scale(0.6);
+        }
+        
     </style>
     <script type="application/ld+json">
     {
@@ -553,8 +569,11 @@
                 <!-- Portfolio Item 1 -->
                 <div class="portfolio-item rounded-lg overflow-hidden shadow-lg" data-category="lp" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative overflow-hidden">
-                        <!-- <img src="https://via.placeholder.com/600x400?text=Perfume+LP" alt="香水ランディングページ" class="w-full h-64 object-cover"> -->
-                         <iframe src="https://soukikikuchi.github.io/perfume_lading_page/" width="100%" height="280px"></iframe>
+                        <div class="pc">
+                            <div class="frame">
+                                <iframe src="https://soukikikuchi.github.io/perfume_lading_page/" width="1280" height="800"></iframe>
+                            </div>
+                        </div>
                         <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col p-4">
                             <h3 class="text-white text-xl font-bold mb-2">香水ランディングページ</h3>
                             <p class="text-white text-center mb-4">インフルエンサーコラボの香水ブランドのLP</p>
