@@ -401,11 +401,12 @@
                 </div>
                 <div class="md:w-1/2 mt-12 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
                     <div class="relative flex justify-center">
-                        <div class="w-64 h-64 bg-white rounded-full shadow-xl overflow-hidden floating">
+                        <!-- <div class="w-64 h-64 bg-white rounded-full shadow-xl overflow-hidden floating">
                             <svg class="w-full h-full text-indigo-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
                             </svg>
-                        </div>
+                        </div> -->
+                        <div class="instructions">マウスを動かして操作してください</div>
                         
                         <!-- Decorative Elements -->
                         <div class="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-secondary-color rotating"></div>
@@ -1211,6 +1212,179 @@
         setTimeout(() => {
             typeWriter(typedTextElement, textToType);
         }, 1000);
+  
+    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.module.min.js';
+
+    // シーンの設定
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x121212);
+    document.body.appendChild(renderer.domElement);
+
+    // カメラポジション
+    camera.position.z = 15;
+
+    // ライト
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(0, 10, 10);
+    scene.add(directionalLight);
+
+    const pointLight = new THREE.PointLight(0xff9900, 1, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0x0088ff, 1, 100);
+    pointLight2.position.set(-5, -5, 5);
+    scene.add(pointLight2);
+
+    // クリエイティブ形状の生成
+    const shapes = [];
+    const totalShapes = 30;
+
+    // 形状を作成する関数
+    function createShape(index) {
+      let geometry;
+      const type = index % 4;
+      
+      switch (type) {
+        case 0:
+          geometry = new THREE.TorusKnotGeometry(1, 0.3, 64, 16);
+          break;
+        case 1:
+          geometry = new THREE.OctahedronGeometry(1, 0);
+          break;
+        case 2:
+          geometry = new THREE.IcosahedronGeometry(1, 0);
+          break;
+        case 3:
+          geometry = new THREE.TetrahedronGeometry(1, 0);
+          break;
+      }
+
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color().setHSL(index / totalShapes, 0.8, 0.6),
+        roughness: 0.5,
+        metalness: 0.8,
+        flatShading: index % 2 === 0
+      });
+
+      const shape = new THREE.Mesh(geometry, material);
+      
+      // スパイラル状に配置
+      const angle = index * 0.4;
+      const radius = 7 + Math.sin(index * 0.3) * 2;
+      const height = (index - totalShapes / 2) * 0.3;
+      
+      shape.position.x = Math.cos(angle) * radius;
+      shape.position.y = height;
+      shape.position.z = Math.sin(angle) * radius;
+      
+      // 初期回転
+      shape.rotation.x = Math.random() * Math.PI;
+      shape.rotation.y = Math.random() * Math.PI;
+      
+      // サイズをランダム化
+      const scale = 0.5 + Math.random() * 0.5;
+      shape.scale.set(scale, scale, scale);
+      
+      // カスタムプロパティを追加
+      shape.userData = {
+        rotationSpeed: {
+          x: (Math.random() - 0.5) * 0.01,
+          y: (Math.random() - 0.5) * 0.01,
+          z: (Math.random() - 0.5) * 0.01
+        }
+      };
+      
+      scene.add(shape);
+      shapes.push(shape);
+    }
+
+    // 形状を生成
+    for (let i = 0; i < totalShapes; i++) {
+      createShape(i);
+    }
+
+    // 中央の特別なオブジェクト
+    const mainGeometry = new THREE.TorusGeometry(3, 0.6, 16, 100);
+    const mainMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      roughness: 0.1,
+      metalness: 0.9,
+      emissive: 0x222222
+    });
+    const mainTorus = new THREE.Mesh(mainGeometry, mainMaterial);
+    scene.add(mainTorus);
+
+    // マウスインタラクション
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let windowHalfX = window.innerWidth / 2;
+    let windowHalfY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', onDocumentMouseMove);
+    window.addEventListener('resize', onWindowResize);
+
+    function onDocumentMouseMove(event) {
+      mouseX = (event.clientX - windowHalfX) / 100;
+      mouseY = (event.clientY - windowHalfY) / 100;
+    }
+
+    function onWindowResize() {
+      windowHalfX = window.innerWidth / 2;
+      windowHalfY = window.innerHeight / 2;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // アニメーション
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      // カメラの回転を徐々に目標に近づける
+      targetRotationX += (mouseY - targetRotationX) * 0.05;
+      targetRotationY += (mouseX - targetRotationY) * 0.05;
+      
+      camera.position.x = Math.sin(targetRotationY) * 15;
+      camera.position.z = Math.cos(targetRotationY) * 15;
+      camera.position.y = targetRotationX * 5;
+      camera.lookAt(scene.position);
+      
+      // 形状の回転
+      shapes.forEach(shape => {
+        shape.rotation.x += shape.userData.rotationSpeed.x;
+        shape.rotation.y += shape.userData.rotationSpeed.y;
+        shape.rotation.z += shape.userData.rotationSpeed.z;
+      });
+      
+      // 中央のトーラスの回転
+      mainTorus.rotation.x += 0.005;
+      mainTorus.rotation.y += 0.01;
+      
+      // ライトのアニメーション
+      const time = Date.now() * 0.001;
+      pointLight.position.x = Math.sin(time * 0.7) * 8;
+      pointLight.position.y = Math.cos(time * 0.5) * 8;
+      pointLight.position.z = Math.cos(time * 0.3) * 8;
+      
+      pointLight2.position.x = Math.cos(time * 0.3) * 8;
+      pointLight2.position.y = Math.sin(time * 0.5) * 8;
+      pointLight2.position.z = Math.sin(time * 0.7) * 8;
+      
+      renderer.render(scene, camera);
+    }
+
+    animate();
     </script>
 </body>
 </html>
